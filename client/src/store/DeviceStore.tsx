@@ -1,9 +1,6 @@
 import { makeAutoObservable } from "mobx";
 import {
-   initialBrands,
-   // initialDevices,
    initSelectedType,
-   initialTypes,
    TypesProps,
    DevicesProps,
 } from "../utils/initialData";
