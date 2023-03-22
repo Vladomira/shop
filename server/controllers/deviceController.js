@@ -19,8 +19,8 @@ class DeviceController {
             img: fileName,
          });
          if (info) {
-            info = JSON.parse(info);
-            info.forEach((i) =>
+            const parsedInfo = JSON.parse(info);
+            parsedInfo.forEach((i) =>
                DeviceInfo.create({
                   title: i.title,
                   description: i.description,

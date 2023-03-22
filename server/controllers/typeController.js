@@ -5,6 +5,7 @@ class TypeController {
    async create(req, res, next) {
       try {
          const { name } = req.body;
+
          const type = await Type.create({ name });
          return res.json(type);
       } catch (error) {
