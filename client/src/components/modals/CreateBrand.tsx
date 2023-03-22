@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
 import { Button, Form, Modal, ModalProps } from "react-bootstrap";
-import { createBrand } from "../../http/deviceApi";
+import { createBrand } from "../../api/deviceApi";
 
 export const CreateBrand: FC<ModalProps> = ({ show, onHide }) => {
    const [value, setValue] = useState<string>("");

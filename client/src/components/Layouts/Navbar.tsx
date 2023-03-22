@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import Button from "react-bootstrap/esm/Button";
 import { Outlet, useNavigate } from "react-router-dom";
@@ -14,15 +14,31 @@ import {
 } from "../../utils/consts";
 import { CustomLink } from "./CustomLink";
 import basketImg from "../../assets/basket.png";
+import { fetchUserBasket } from "../../api/basketApi";
+import { userInit, BasketData } from "../../utils/store-types";
 
 export const NavBar = observer(() => {
-   const { user } = useContext(Context);
+   const { user, basket } = useContext(Context);
    let navigate = useNavigate();
+   const [userBasket, setUserBasket] = useState<number | null>(null);
 
    const logOut = () => {
-      user.setUser({});
+      user.setUser(userInit);
       user.setIsAuth(false);
+      localStorage.setItem("token", "");
+      navigate(SHOP_ROUTE);
    };
+   useEffect(() => {
+      user?.user?.id &&
+         fetchUserBasket({ userId: user.user.id }).then(
+            (data: BasketData[]) => {
+               setUserBasket(data.length);
+               basket.setBasketId(data[0].basketId);
+               basket.setBasketDevicesIds(data.map(({ deviceId }) => deviceId));
+            }
+         );
+   }, [user.user.id]);
+
    return (
       <>
          <Navbar bg="dark" variant="dark" className="pt-3 pb-3">
@@ -78,7 +94,7 @@ export const NavBar = observer(() => {
                                  right: "-10px",
                               }}
                            >
-                              2
+                              {userBasket}
                            </p>
                         </Button>
                      </Nav>

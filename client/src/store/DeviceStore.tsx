@@ -3,7 +3,7 @@ import {
    initSelectedType,
    TypesProps,
    DevicesProps,
-} from "../utils/initialData";
+} from "../utils/store-types";
 
 export default class DeviceStore {
    private _types: TypesProps[];

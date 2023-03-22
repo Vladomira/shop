@@ -6,9 +6,9 @@ import Row from "react-bootstrap/esm/Row";
 import { Context } from "..";
 import { BrandBar } from "../components/BrandBar";
 import { DeviceList } from "../components/DeviceList";
-import { Pages } from "../components/Pages";
+import { PagesPagination } from "../components/PagesPagination";
 import { TypeBar } from "../components/TypeBar";
-import { fetchBrands, fetchTypes, fetchDevices } from "../http/deviceApi";
+import { fetchBrands, fetchTypes, fetchDevices } from "../api/deviceApi";
 
 const Shop = observer(() => {
    const { devices } = useContext(Context);
@@ -41,7 +41,7 @@ const Shop = observer(() => {
             <Col md={9}>
                <BrandBar />
                <DeviceList />
-               <Pages />
+               <PagesPagination />
             </Col>
          </Row>
       </Container>

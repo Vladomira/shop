@@ -1,14 +1,15 @@
 import React, { createContext } from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import UserStore from "./store/UserStore";
 import DeviceStore from "./store/DeviceStore";
+import BasketStore from "./store/BasketStore";
 
 export const Context = createContext({
    user: new UserStore(),
    devices: new DeviceStore(),
+   basket: new BasketStore(),
 });
 
 const root = ReactDOM.createRoot(
@@ -16,7 +17,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
    <Context.Provider
-      value={{ user: new UserStore(), devices: new DeviceStore() }}
+      value={{
+         user: new UserStore(),
+         devices: new DeviceStore(),
+         basket: new BasketStore(),
+      }}
    >
       <React.StrictMode>
          <App />

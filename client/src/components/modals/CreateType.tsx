@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
-import { createType } from "../../http/deviceApi";
+import { createType } from "../../api/deviceApi";
 export type ModalProps = { show: boolean; onHide: () => void };
 
 export const CreateType: FC<ModalProps> = ({ show, onHide }) => {

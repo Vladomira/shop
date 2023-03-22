@@ -10,12 +10,7 @@ import {
    Row,
 } from "react-bootstrap";
 import { Context } from "../..";
-import {
-   createDevice,
-   fetchBrands,
-   fetchDevices,
-   fetchTypes,
-} from "../../http/deviceApi";
+import { createDevice, fetchBrands, fetchTypes } from "../../api/deviceApi";
 
 type InfoProps = {
    id: number;
@@ -143,7 +138,6 @@ export const CreateDeviceComponent: FC<ModalProps> = observer(
                                     onChange={({ target: { value } }) =>
                                        changeInfo("title", value, date)
                                     }
-                                    // "name"
                                     placeholder="title"
                                  />
                               </Col>
@@ -153,7 +147,6 @@ export const CreateDeviceComponent: FC<ModalProps> = observer(
                                     onChange={({ target: { value } }) =>
                                        changeInfo("description", value, date)
                                     }
-                                    // Type description of characteristic
                                     placeholder="description"
                                  />
                               </Col>

@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { Pagination } from "react-bootstrap";
 import { Context } from "..";
 
-export const Pages = observer(() => {
+export const PagesPagination = observer(() => {
    const { devices } = useContext(Context);
    const pages = [];
    const pageCount = Math.ceil(devices.totalCount / devices.limit);
@@ -12,7 +12,7 @@ export const Pages = observer(() => {
       pages.push(i + 1);
    }
    return (
-      <Pagination className="nt-5">
+      <Pagination className="mt-5">
          {pages.length > 0 &&
             pages.map((page) => (
                <Pagination.Item

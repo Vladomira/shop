@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Image, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import bigStar from "../assets/bigStar.png";
-import { fetchDeviceById } from "../http/deviceApi";
-import { DeviceInfoProps, initialDevice } from "../utils/initialData";
+import { fetchDeviceById } from "../api/deviceApi";
+import { DeviceInfoProps, initialDevice } from "../utils/store-types";
 
 export const DevicePage = () => {
    const [device, setDevice] = useState<DeviceInfoProps>(initialDevice);

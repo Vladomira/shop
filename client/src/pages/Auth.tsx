@@ -5,11 +5,12 @@ import { Card, Form, FormControl } from "react-bootstrap";
 import Button from "react-bootstrap/esm/Button";
 import Container from "react-bootstrap/esm/Container";
 import { LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE } from "../utils/consts";
-import { login, registration } from "../http/userApi";
+import { login, registration } from "../api/userApi";
 import { Notification } from "../components/Notification";
 import { observer } from "mobx-react-lite";
 import { Context } from "..";
 import { AxiosError } from "axios";
+import { GetUserData } from "../utils/store-types";
 
 type ErrorType = { data: { message: string } };
 
@@ -23,13 +24,14 @@ const Auth = observer(() => {
 
    const onClick = async () => {
       try {
-         let data;
+         let data: GetUserData;
          if (isLogin) {
             data = await login(email, password);
          } else {
             data = await registration(email, password);
          }
-         user.setUser(user);
+
+         user.setUser({ user: true, id: data.id });
          user.setIsAuth(true);
          data && navigate(SHOP_ROUTE);
       } catch (error) {

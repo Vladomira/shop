@@ -36,7 +36,7 @@ export const fetchDevices = async (
    });
    return data;
 };
-export const fetchDeviceById = async (id: string) => {
+export const fetchDeviceById = async (id: string | number) => {
    const { data } = await $host.get(`api/device/${id}`);
    return data;
 };
