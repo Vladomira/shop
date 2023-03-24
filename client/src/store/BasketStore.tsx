@@ -2,21 +2,24 @@ import { makeAutoObservable } from "mobx";
 import { DevicesProps } from "../utils/store-types";
 
 export default class BasketStore {
+   getBasketDevicesIds(arg0: string, getBasketDevicesIds: any) {
+      throw new Error("Method not implemented.");
+   }
    private _basketId: number | null;
-   // private _basketDevicesInfo: DevicesProps[];
+   private _basketDevices: DevicesProps[];
    private _basketDevicesIds: number[];
 
    constructor() {
       this._basketId = null;
-      // this._basketDevicesInfo = [];
+      this._basketDevices = [];
       this._basketDevicesIds = [];
 
       makeAutoObservable(this);
    }
 
-   // setBasketDevices(devices: DevicesProps[]) {
-   //    this._basketDevicesInfo = devices;
-   // }
+   setBasketDevices(device: DevicesProps[]) {
+      this._basketDevices = device;
+   }
    setBasketId(id: number) {
       this._basketId = id;
    }
@@ -24,9 +27,9 @@ export default class BasketStore {
       this._basketDevicesIds = devices;
    }
 
-   // get basketDevices() {
-   //    return this._basketDevicesInfo;
-   // }
+   get basketDevices() {
+      return this._basketDevices;
+   }
    get basketId() {
       return this._basketId;
    }

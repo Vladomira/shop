@@ -16,8 +16,8 @@ export const fetchUserBasket = async (userId: UserBasketProps) => {
    const { data } = await $authHost.get(`api/basket/${userId}`);
    return data;
 };
-// export const fetchBasketDevices = async () => {
-//    const { data } = await $authHost.get(`api/basket`);
-//    console.log("data", data);
-//    return data;
-// };
+
+export const fetchBasketDevices = async (userId: UserBasketProps) => {
+   const { data } = await $authHost.get(`api/basket/${userId}`);
+   return data;
+};

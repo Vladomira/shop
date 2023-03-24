@@ -1,26 +1,26 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "..";
-import { fetchDeviceById } from "../api/deviceApi";
-import { BasketDevicesProps, DevicesProps } from "../utils/store-types";
+import { fetchBasketDevices } from "../api/basketApi";
+import { DeviceItem } from "../components/DeviceItem";
+import { DevicesProps } from "../utils/store-types";
 
 export const Basket = () => {
-   const { user, basket, devices } = useContext(Context);
+   const { user } = useContext(Context);
    const [basketDevices, setBasketDevices] = useState<DevicesProps[]>([]);
 
    useEffect(() => {
-      // id && fetchDeviceById(id).then((data) => setDevice(data));
       if (user.user.id) {
-         // const res= basket.basketDevicesIds.map(())
+         fetchBasketDevices({ userId: user.user.id }).then((data) =>
+            setBasketDevices(data)
+         );
       }
    }, []);
-   // console.log("basketDevices", basketDevices);
-
    return (
-      <div>
-         {/* {basketDevices.length > 0 &&
-            basketDevices.map((el) => {
-               return <p>{el.name}</p>;
-            })} */}
+      <div style={{ display: "flex", flexWrap: "wrap" }}>
+         {basketDevices.length > 0 &&
+            basketDevices.map((device) => (
+               <DeviceItem key={device.id} device={device} />
+            ))}
       </div>
    );
 };

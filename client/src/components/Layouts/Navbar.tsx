@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import Button from "react-bootstrap/esm/Button";
 import { Outlet, useNavigate } from "react-router-dom";
@@ -20,7 +20,6 @@ import { userInit, BasketData } from "../../utils/store-types";
 export const NavBar = observer(() => {
    const { user, basket } = useContext(Context);
    let navigate = useNavigate();
-   const [userBasket, setUserBasket] = useState<number | null>(null);
 
    const logOut = () => {
       user.setUser(userInit);
@@ -32,8 +31,7 @@ export const NavBar = observer(() => {
       user?.user?.id &&
          fetchUserBasket({ userId: user.user.id }).then(
             (data: BasketData[]) => {
-               setUserBasket(data.length);
-               basket.setBasketId(data[0].basketId);
+               if (data.length > 0) basket.setBasketId(data[0].basketId);
                basket.setBasketDevicesIds(data.map(({ deviceId }) => deviceId));
             }
          );
@@ -82,20 +80,22 @@ export const NavBar = observer(() => {
                               src={basketImg}
                               rounded
                            />
-                           <p
-                              style={{
-                                 position: "absolute",
-                                 color: "#6c757d",
-                                 background: "gold",
-                                 padding: "0px 6px",
-                                 borderRadius: "100%",
-                                 fontWeight: 700,
-                                 top: "-10px",
-                                 right: "-10px",
-                              }}
-                           >
-                              {userBasket}
-                           </p>
+                           {basket.basketDevicesIds.length > 0 && (
+                              <p
+                                 style={{
+                                    position: "absolute",
+                                    color: "#6c757d",
+                                    background: "gold",
+                                    padding: "0px 6px",
+                                    borderRadius: "100%",
+                                    fontWeight: 700,
+                                    top: "-10px",
+                                    right: "-10px",
+                                 }}
+                              >
+                                 {basket.basketDevicesIds.length}
+                              </p>
+                           )}
                         </Button>
                      </Nav>
                   ) : (
