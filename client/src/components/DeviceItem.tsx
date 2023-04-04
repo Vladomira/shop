@@ -39,18 +39,13 @@ export const DeviceItem: FC<DeviceItemProp> = ({ device }) => {
          <Card
             style={{
                width: "150px",
-               outline: " 1px solid red",
                cursor: "pointer",
                padding: "5px 8px",
             }}
             border="light"
          >
             <div onClick={() => navigate(`${DEVICE_ROUTE}/${id}`)}>
-               <Image
-                  width={150}
-                  height={150}
-                  src={`${process.env.REACT_APP_API_URL}${img}`}
-               />
+               <Image width={150} height={150} src={img} />
                <div className="text-black-50 mt-1 d-flex justify-content-between align-items-center">
                   <div>{name}</div>
                   <div className="d-flex align-items-center ">
